@@ -59,7 +59,7 @@ RepoTEMP 폴더 내 파일의 존재 유무, GitHub 서버의 연결 유무, 지
 
 ## Tool.bat
 
-**[[다운로드]](<https://raw.githubusercontent.com/YHREPO/REPOPROG/main/Tool.bat>)**
+**[[다운로드]](<https://github.com/YHREPO/REPOPROG/releases/download/v1.0/Tool.bat>)**
 
 ### About Tool.bat
 
