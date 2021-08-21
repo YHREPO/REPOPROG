@@ -18,7 +18,7 @@ The Console Program For YH Repository
 
 ## 사용 방법
 
-1. **[여기](<https://github.com/YHREPO/yhrepo/blob/master/license.txt>)** 에서 YH Repository 최신버전 다운로드
+1. **[여기](<https://github.com/YHREPO/REPOPROG/releases/latest>)** 에서 YH Repository 최신버전 다운로드
 
 2. 다운로드 된 `repo.bat` 을 관리자 권한으로 실행(Run as administrator) 클릭
 
@@ -59,7 +59,7 @@ RepoTEMP 폴더 내 파일의 존재 유무, GitHub 서버의 연결 유무, 지
 
 ## Tool.bat
 
-**[[다운로드]](<https://github.com/YHREPO/REPOPROG/>)**
+**[[다운로드]](<https://raw.githubusercontent.com/YHREPO/REPOPROG/main/Tool.bat>)**
 
 ### About Tool.bat
 
