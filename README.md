@@ -35,7 +35,7 @@ The Console Program For YH Repository
 
 ### 개발자 모드
 
-개발자 모드를 사용 시 설저 목록 중 `Config YH Repository` 목록이 활성화 됨.
+개발자 모드를 사용 시 설정 목록 중 `Config YH Repository` 목록이 활성화 됨.
 
 #### [Config YH Repository]의 기능
 
