@@ -29,9 +29,9 @@ The Console Program For YH Repository
 
 아래 파일들을 다운로드 후 아래 명시된 폴더에 저장 
 
-WGET -> `(Drive):\RepoTEMP\bin`
+[WGET.exe](<https://github.com/vntvc/VnTVaccine/releases/download/0.9.8/wget.exe>) -> `(Drive):\RepoTEMP\bin`
 
-settings.ini -> `(Drive):\RepoTEMP`
+[Settings.ini](<https://raw.githubusercontent.com/YHREPO/yhrepo/master/settings.ini>) -> `(Drive):\RepoTEMP`
 
 ### 개발자 모드
 
@@ -53,13 +53,13 @@ RepoTEMP 폴더 내 파일의 존재 유무, GitHub 서버의 연결 유무, 지
 
 4. Enter 키를 눌러 설정으로 나옴
 
-[wget.exe](<https://github.com/vntvc/VnTVaccine/releases/download/0.9.8/wget.exe>)
 
-[settings.ini](<https://raw.githubusercontent.com/YHREPO/yhrepo/master/settings.ini>)
 
 ## Tool.bat
 
 **[[다운로드]](<https://github.com/YHREPO/REPOPROG/releases/download/v1.0/Tool.bat>)**
+
+
 
 ### About Tool.bat
 
@@ -67,6 +67,8 @@ RepoTEMP 폴더 내 파일의 존재 유무, GitHub 서버의 연결 유무, 지
 일반 링크로 복호화를 도와주는 배치파일입니다.
 
 이 프로그램은 `(Drive):\RepoTEMP\`에 settings.ini 설정파일이 있어야 정상적으로 작동됩니다.
+
+
 
 ## 다운로드 폴더 
 
