@@ -108,7 +108,7 @@ Enter 키를 눌러 다운로드 폴더 경로를 적용할 수 있습니다.
 ___아래의 내용을 복사하여 출처를 남겨주세요___
 >[출처]
 >GitHub YHREPO:REPOPROG
-><https://github.com/vntvc/VnTVaccine>
+><https://github.com/YHREPO/yhrepo>
 ><https://github.com/YHREPO/REPOPROG>
 	
 ## Em@il
