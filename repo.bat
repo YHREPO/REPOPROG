@@ -1,5 +1,5 @@
 @echo off
-title YH Repository 1.0
+title YH Repository 1.1
 mode con cols=50 lines=20
 for /f "tokens=6 delims=[]. " %%G in ('ver') do set winbuild=%%G
 if %winbuild% LSS 2600 goto ER1
@@ -284,6 +284,8 @@ echo R. 프로그램 초기화
 echo.
 echo L. 라이선스
 echo. 
+echo U. 업데이트 확인
+echo.
 echo C. 나가기
 set /p setting= 원하시는 번호를 입력 :
 if %setting%==1 goto S_DWLD_F
@@ -295,6 +297,8 @@ if %setting%==d goto S_DEVM
 if %setting%==r goto RESET
 if %setting%==l goto LIC2
 if %setting%==c goto MAIN 
+if %setting%==U goto CHKUPD
+if %setting%==u goto CHKUPD
 goto :SET
 
 
@@ -314,6 +318,8 @@ echo R. 프로그램 초기화
 echo.
 echo L. 라이선스
 echo. 
+echo U. 업데이트 확인
+echo.
 echo F. Config YH Repository
 echo.
 echo C. 나가기 
@@ -327,9 +333,206 @@ if %setting%==d goto S_DEVM
 if %setting%==r goto RESET
 if %setting%==l goto LIC2
 if %setting%==c goto MAIN 
-if %setting%==F goto FLST
+if %setting%==F goto FLST6
 if %setting%==f goto FLST
+if %setting%==U goto CHKUPD
+if %setting%==u goto CHKUPD
 goto :SET_dev
+
+
+:CHKUPD
+cd %systemdrive%\RepoTEMP
+if not exist "db.txt" goto UPD_D
+if not exist "ndb.txt" goto UPD_N
+del ndb.txt
+:CHKUPD1
+cls
+echo =================================================
+echo YH Repository - CHECKING UPDATE
+echo =================================================
+echo.
+echo Repo 프로그램 업데이트
+echo.
+echo.               
+echo.	          
+echo YH Repository 에서 업데이트 확인 중...
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo 잠시 기다려 주세요.
+ping -n 3 localhost >nul
+goto UPD_2
+
+
+:UPD_2
+if "%ORP%" LSS "%NRP%" goto UPD_3
+if "%ORP%" == "%NRP%" goto NUP
+goto ER0
+
+:UPD_D
+cd %systemdrive%\RepoTEMP
+echo 1.0 >>%systemdrive%\RepoTEMP\db.txt
+goto CHKUPD
+
+
+:UPD_N
+bin\wget.exe -q -nc -P %systemdrive%\RepoTEMP --no-hsts https://raw.githubusercontent.com/YHREPO/REPOPROG/main/ndb.txt
+if not exist "db.txt" goto ER0
+if not exist "ndb.txt" goto ER0
+set /p ORP=<db.txt
+set /p NRP=<ndb.txt
+goto CHKUPD1
+
+
+:ER0
+cls
+echo =================================================
+echo YH Repository - UPDATE Failed
+echo =================================================
+echo.
+echo Repo 프로그램 업데이트
+echo.
+echo.               
+echo 업데이트 중 오류가 발생하여	          
+echo.
+echo 업데이트가 중단되었습니다
+echo.
+echo.
+echo.
+echo.
+echo.
+echo 아무키나 누르면 메인으로 나갑니다.
+pause>nul
+goto MAIN
+
+:NUP
+cd %systemdrive%\RepoTEMP
+del db.txt
+cls
+echo =================================================
+echo YH Repository - CHECKING UPDATE
+echo =================================================
+echo.
+echo Repo 프로그램 업데이트
+echo.
+echo.               
+echo.	          
+echo YH Repository 에서 발견된 업데이트가 없습니다.
+echo.
+echo.
+echo 이 버전이 최신 버전입니다.
+echo.
+echo.
+echo.
+echo 아무키나 누르면 메인으로 나갑니다.
+pause>nul
+goto MAIN
+
+
+:NPD
+cd %systemdrive%\RepoTEMP
+del db.txt
+cls
+echo =================================================
+echo YH Repository - CHECKING UPDATE
+echo =================================================
+echo.
+echo Repo 프로그램 업데이트
+echo.
+echo.               
+echo.	          
+echo 업데이트를 취소하였습니다.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo 3초 후 메인으로 나갑니다.
+ping -n 3 localhost >nul
+goto MAIN
+
+
+
+:UPD_3
+cls
+echo =================================================
+echo YH Repository - CHECKING UPDATE
+echo =================================================
+echo.
+echo Repo 프로그램 업데이트
+echo.
+echo.               
+echo 새 버전의 Repo 프로그램이 발견되었습니다.          
+echo.
+echo.
+echo 현재 버전 : %ORP%
+echo. 
+echo 새로운 버전 : %NRP%
+echo.
+echo.
+echo 업데이트를 진행하시겠습니까?
+choice /c YN /m "Y,N 입력"
+IF ERRORLEVEL==2 goto NPD
+IF ERRORLEVEL==1 goto UPD_4
+
+
+:UPD_4
+cd %systemdrive%\RepoTEMP
+if not exist "UPDATE" md UPDATE
+set ORP=%NRP%
+del ndb.txt
+del db.txt
+echo %NRP%>>%systemdrive%\RepoTEMP\db.txt 
+bin\wget.exe -q -nc -P %systemdrive%\RepoTEMP\UPDATE --no-hsts https://raw.githubusercontent.com/YHREPO/REPOPROG/main/repo.bat
+if not exist "%userprofile%\Desktop\NEW_REPO" md %userprofile%\Desktop\NEW_REPO
+move %systemdrive%\RepoTEMP\UPDATE\repo.bat %userprofile%\Desktop\NEW_REPO\repo.bat
+cls
+echo =================================================
+echo YH Repository - CHECKING UPDATE
+echo =================================================
+echo.
+echo Repo 프로그램 업데이트
+echo.
+echo.               
+echo 업데이트가 진행 중 입니다.	          
+echo.
+echo 프로그램을 종료하지 마세요.
+echo.
+echo.
+echo 업데이트 후 Repo 버전 : %ORP%
+echo.
+echo.
+echo 잠시 기다려 주세요.
+ping -n 3 localhost >nul
+goto UPD_5
+
+
+:UPD_5
+cd %systemdrive%\RepoTEMP
+del db.txt
+cls
+echo =================================================
+echo YH Repository - UPDATE Completed
+echo =================================================
+echo.
+echo Repo 프로그램 업데이트
+echo.
+echo.               
+echo Repo 프로그램의 업데이트가 완료 되었습니다.         
+echo.
+echo 새로운 Repo 프로그램은 아래 경로에 다운로드 되었습니다.
+echo.
+echo [%userprofile%\Desktop\NEW_REPO]
+echo.
+echo 업데이트 된 Repo 버전 : %ORP%
+echo.
+echo 아무키나 누르면 메인으로 나갑니다.
+pause>nul
+goto MAIN
 
 
 :FLST
