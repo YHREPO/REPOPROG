@@ -1,5 +1,5 @@
 @echo off
-title YH Repository 1.1
+title YH Repository 1.2
 mode con cols=50 lines=20
 for /f "tokens=6 delims=[]. " %%G in ('ver') do set winbuild=%%G
 if %winbuild% LSS 2600 goto ER1
@@ -47,6 +47,7 @@ echo.
 ping -n 1 localhost >nul
 if not exist "%systemdrive%\RepoTEMP\bin\wget.exe" goto DWLD_F
 if not exist "%systemdrive%\RepoTEMP\settings.ini" goto DWLD_F
+if not exist "%systemdrive%\RepoTEMP\Tool.bat" goto DWLD_F
 :FL
 cls
 echo =================================================
@@ -139,11 +140,12 @@ ping -n 2 localhost >nul
 if not exist "%systemdrive%\RepoTEMP\settings.ini" goto ER2
 if not exist "%systemdrive%\RepoTEMP\link.encrypted" goto ER2
 if not exist "%systemdrive%\RepoTEMP\list.txt" goto ER2
+if not exist "%systemdrive%\RepoTEMP\Tool.bat" goto ER2
 goto MAIN
 
 
 :MAIN
-title YH Repository 1.1
+title YH Repository 1.2
 cls
 mode con cols=50 lines=20
 set DWLD_F=1
@@ -194,6 +196,7 @@ goto FLD
 
 :FLD
 cls
+if not exist "%systemdrive%\RepoTEMP\Tool.bat" goto ER3
 echo =================================================
 echo YH Repository - DOWNLOADING FILE
 echo =================================================
@@ -214,6 +217,27 @@ call %systemdrive%\RepoTEMP\Tool.bat %SMD%
 cd %systemdrive%\RepoTEMP
 set/p LNK=<Decrypted.txt
 goto FLD_2
+
+:ER3
+cls
+echo =================================================
+echo YH Repository - ERROR
+echo =================================================
+echo.
+echo ERROR 
+echo.               
+echo Tool.bat 파일이 존재하지 않습니다.        
+echo.      
+echo GitHub 에서 다시 다운로드하여 주십시오.
+echo.
+echo.
+echo.
+echo. 
+echo.
+echo 아무키나 누르면 종료됩니다.
+pause>nul
+goto EOF
+
 
 
 :FLD_2
@@ -372,11 +396,12 @@ goto UPD_2
 :UPD_2
 if "%ORP%" LSS "%NRP%" goto UPD_3
 if "%ORP%" == "%NRP%" goto NUP
+if "%ORP%" GTR "%NRP%" goto EarlyAC
 goto ER0
 
 :UPD_D
 cd %systemdrive%\RepoTEMP
-echo 1.1 >>%systemdrive%\RepoTEMP\db.txt
+echo 1.2 >>%systemdrive%\RepoTEMP\db.txt
 goto CHKUPD
 
 
@@ -535,6 +560,28 @@ echo.
 echo 아무키나 누르면 메인으로 나갑니다.
 pause>nul
 goto MAIN
+
+:EarlyAC
+cls
+echo =================================================
+echo YH Repository - BETA
+echo =================================================
+echo.
+echo 이 버전은 베타버전입니다.
+echo.               
+echo.          
+echo.      
+echo 업데이트가 발견되지 않았습니다.
+echo.
+echo.
+echo.
+echo. 
+echo.
+echo 아무키나 누르면 메인으로 나갑니다.
+pause>nul
+goto MAIN
+
+
 
 
 :FLST
@@ -832,6 +879,7 @@ powershell "(New-Object System.Net.WebClient).DownloadFile('https://github.com/v
 if not exist "%systemdrive%\RepoTEMP\bin\wget.exe" goto ER2
 :DWLD_F2
 cd %systemdrive%\RepoTEMP
+bin\wget.exe -q -nc -P %systemdrive%\RepoTEMP --no-hsts https://github.com/YHREPO/REPOPROG/releases/download/v1.1/Tool.bat
 bin\wget.exe -q -nc -P %systemdrive%\RepoTEMP --no-hsts https://raw.githubusercontent.com/YHREPO/yhrepo/master/settings.ini
 bin\wget.exe -q -nc -P %systemdrive%\RepoTEMP --no-hsts https://raw.githubusercontent.com/YHREPO/yhrepo/master/license.txt
 ping -n 2 localhost >nul
