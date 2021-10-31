@@ -79,8 +79,8 @@ Ex) CH=2
 
 ### 현재 사용가능한 서버 번호 목록
 
-- [1](<https://github.com/YHREPO/yhrepo/list.txt>)
-- [2](<https://github.com/YHREPO/yhrepo/list2.txt>)
+- [1](<https://github.com/YHREPO/yhrepo/blob/master/list.txt>)
+- [2](<https://github.com/YHREPO/yhrepo/blob/master/list2.txt>)
 
 기본 서버는 `#1` 입니다.
 
