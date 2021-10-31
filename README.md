@@ -53,6 +53,36 @@ RepoTEMP 폴더 내 파일의 존재 유무, GitHub 서버의 연결 유무, 지
 
 4. Enter 키를 눌러 설정으로 나옴
 
+### 서버 변경
+
+YH Repository 1.4 버전부터는 서버를 변경할 수 있습니다.
+
+`(Drive):\RepoTEMP\` 에 settings.ini를 열어
+
+>=====SETTINGS.INI=====
+>
+>Algorithm=decode
+>
+>OriginFile=!systemdrive!\RepoTEMP\link.encrypted
+>
+>ModifiedFile=!systemdrive!\RepoTEMP\!fld!\link.txt
+>
+>FileName=link.txt
+>
+>CH=원하는 서버 번호
+>
+>======================
+
+Ex) CH=2
+
+위와 같이 입력하고 프로그램을 다시 실행해 주시면 서버가 바뀝니다.
+
+### 현재 사용가능한 서버 번호 목록
+
+- [1](<https://github.com/YHREPO/yhrepo/list.txt>)
+- [2](<https://github.com/YHREPO/yhrepo/list2.txt>)
+
+기본 서버는 `#1` 입니다.
 
 
 ## Tool.bat
